@@ -441,4 +441,51 @@ const blogCards = document.querySelectorAll('.blog-card');
 blogCards.forEach(card => {
     observer.observe(card);
 });
-     
+     // Add some interactive feedback
+document.addEventListener('click', (e) => {
+    // Add ripple effect to buttons
+    if (e.target.tagName === 'BUTTON') {
+        const button = e.target;
+        const ripple = document.createElement('span');
+        const diameter = Math.max(button.clientWidth, button.clientHeight);
+        const radius = diameter / 2;
+        
+        ripple.style.width = ripple.style.height = diameter + 'px';
+        ripple.style.left = (e.clientX - button.offsetLeft - radius) + 'px';
+        ripple.style.top = (e.clientY - button.offsetTop - radius) + 'px';
+        ripple.classList.add('ripple');
+        button.appendChild(ripple);
+        
+        setTimeout(() => {
+            ripple.remove();
+        }, 600);
+    }
+});
+
+// Add CSS for ripple effect
+const style = document.createElement('style');
+style.textContent = `
+    button {
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .ripple {
+        position: absolute;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.3);
+        pointer-events: none;
+        transform: scale(0);
+        animation: rippleEffect 0.6s ease-out;
+    }
+    
+    @keyframes rippleEffect {
+        to {
+            transform: scale(2);
+            opacity: 0;
+        }
+    }
+`;
+document.head.appendChild(style);
+});
+
