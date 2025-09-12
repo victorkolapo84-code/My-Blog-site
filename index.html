@@ -266,28 +266,12 @@
         </div>
     </div>
 
-    <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+    emailjs.init({ publicKey: "Gkisq4GSHGj4nx1rh" });
 </script>
-<script type="text/javascript">
-   (function(){
-      emailjs.init({
-        publicKey: "Gkisq4GSHGj4nx1rh",
-      });
-   })();
-  document.querySelector('.contact-form').addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    emailjs.sendForm('service_lwuj9e5', 'template_8fp22u3', e.target)
-      .then(() => {
-  alert('Message sent!');
-  e.target.reset(); // This clears the form
-      }, (err) => {
-        alert('Failed to send. Error: ' + JSON.stringify(err));
-       
 
-      });
-  });
+
                                                            </script>
 
     <script src="script.js"></script>
